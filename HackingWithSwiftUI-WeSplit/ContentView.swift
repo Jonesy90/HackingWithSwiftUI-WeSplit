@@ -18,12 +18,15 @@ struct ContentView: View {
     
     let currencyCode = Locale.current.currency?.identifier ?? "GBP"
     
+    var totalAmount: Double {
+        let tipSelection = Double(tipPercentage) //Converts the tipPercentage into a Double so it can be used with the rest of the 'totalPercentage' computed property.
+        let tipValue = (checkAmount / 100) * tipSelection //Returns the total tip amount that needs to be added onto the 'checkAmount'.
+        
+        return checkAmount + tipValue
+    }
+    
     var totalPerPerson: Double {
         let peopleCount = Double(numberOfPeople + 2) //TODO: Explain this bit.
-        let tipSelection = Double(tipPercentage) //Converts the tipPercentage into a Double so it can be used with the rest of the 'totalPercentage' computed property.
-        
-        let tipValue = (checkAmount / 100) * tipSelection //Returns the total tip amount that needs to be added onto the 'checkAmount'.
-        let totalAmount = checkAmount + tipValue //Adding 'checkAmount' and 'tipValue' together to get the total amount due.
         let amountPerPerson = totalAmount / peopleCount //Dividing the total amount due by the amount of people.
         
         return amountPerPerson
@@ -47,14 +50,18 @@ struct ContentView: View {
                 
                 Section("How much do you want to tip?") {
                     Picker("Tip Percentage", selection: $tipPercentage) {
-                        ForEach(tipsPercentages, id: \.self) { tip in
+                        ForEach(0..<101) { tip in
                             Text(tip, format: .percent)
                         }
                     }
-                    .pickerStyle(.segmented)
+                    .pickerStyle(.navigationLink)
                 }
                 
-                Section {
+                Section("Check Amount + Tip") {
+                    Text(totalAmount, format: .currency(code: currencyCode))
+                }
+                
+                Section("Amount per Person") {
                     Text(totalPerPerson, format: .currency(code: currencyCode))
                 }
             }
