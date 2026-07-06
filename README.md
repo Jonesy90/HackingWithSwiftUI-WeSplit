@@ -4,7 +4,7 @@ This is Project 1 of the Hacking With SwiftUI learning journey. The end result o
 
 This project introduced and began to solidify how Swift and SwiftUI work together.
 
-## What I Learn't
+## What I Learned
 1. @State Properties
 2. @FocusState Properties
 3. NavigationStack
