@@ -18,4 +18,4 @@ This project introduced and began to solidify how Swift and SwiftUI work togethe
 <img width="330" height="717" alt="HackingWithSwiftUI-WeSplit-Screenshot" src="https://github.com/user-attachments/assets/3e90cf0a-3ad7-45e1-b2a9-bfece93e6cec" />
 
 ## Challenge Update
-TBC
+- 06/07/2026: I've gone back to this app to implement a MVVM design model to this app. I've done this by create a View-Model class within a ContentView extension.
